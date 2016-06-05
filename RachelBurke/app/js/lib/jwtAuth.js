@@ -1,4 +1,4 @@
-const User = require(__dirname + '/../../nodecellar/models/user.js');
+const User = require(__dirname + '/../../../nodecellar/models/user.js');
 const jwt = require('jsonwebtoken');
 
 module.exports = exports = function(req, res, next) {

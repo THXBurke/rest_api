@@ -1,15 +1,18 @@
 const express = require('express');
 const app = express();
-const wineRouter = require(__dirname + '/routes/winerouter.js');
-const cheeseRouter = require(__dirname + '/routes/cheeserouter.js');
-const pairingRouter = require(__dirname + '/routes/party.js');
-const authRouter = require(__dirname + '/routes/authRouter.js');
+const winesRouter = require(__dirname + '/nodecellar/routes/winesrouter.js');
+const cheeseRouter = require(__dirname + '/nodecellar/routes/cheeserouter.js');
+const pairingRouter = require(__dirname + '/nodecellar/routes/party.js');
+const authRouter = require(__dirname + '/nodecellar/routes/authRouter.js');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
-app.use('/api', wineRouter);
+app.use(bodyParser.json());
+app.use('/api', winesRouter);
 app.use('/api', cheeseRouter);
 app.use('/api', pairingRouter);
 app.use('/api', authRouter);
+
 module.exports = exports = {
   server: { close: function() {throw new Error('server not started');} },
   listen: function(port, mongoString, cb) {

@@ -1,22 +1,4 @@
-const express = require('express');
-const app = express();
-const PORT = process.env.PORT || 3000;
-const winesRouter = require(__dirname + '/nodecellar/routes/winesrouter.js');
-const cheeseRouter = require(__dirname + '/nodecellar/routes/cheeserouter.js');
-const pairingRouter = require(__dirname + '/nodecellar/routes/party.js');
-const mongoose = require('mongoose');
-
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rb_db');
-
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  res.header('Access-Control-Allow-Methods', 'DELETE, PUT');
-  next();
-});
-
-
-app.use('/api', winesRouter);
-app.use('/api', cheeseRouter);
-app.use('/api', pairingRouter);
-app.listen(PORT, () => console.log('server happy at ' + PORT));
+if (!process.env.APP_SECRET) throw new Error('Please set the APP_SECRET');
+var PORT = process.env.PORT || 5000;
+var app = require(__dirname + '/_server.js');
+app.listen(PORT, 'mongodb://localhost/db', () => console.log('server happy at' + PORT));

@@ -1,14 +1,14 @@
 const Router = require('express').Router;
-const Wine = require(__dirname + '/../models/wines_model');
+const Wine = require(__dirname + '/../models/wines_model.js');
 const bodyParser = require('body-parser').json();
-const errorHandler = require(__dirname + '/../error_handler');
-const jwtAuth = require(__dirname + '/../../../js/lib/jwtAuth.js');
+const errorHandler = require(__dirname + '/../error_handler.js');
+const jwtAuth = require(__dirname + '/../../app/js/lib/jwtAuth.js');
 var winesRouter = module.exports = Router();
 
 
 winesRouter.get('/wine', jwtAuth, (req, res) => {
   Wine.find(null, (err, data) => {
-    if (err) return errorhandler(err, res);
+    if (err) return errorHandler(err, res);
     res.status(200).json(data);
   });
 });
