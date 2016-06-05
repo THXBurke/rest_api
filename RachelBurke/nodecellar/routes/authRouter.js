@@ -1,7 +1,7 @@
 const express = require('express');
-const User = require(__dirname + '/../nodecellar/models/user.js');
+const User = require(__dirname + '/../models/user.js');
 const bodyParser = require('body-parser').json();
-const basicHTTP = require(__dirname + '/../nodecellar/app/js/lib/basic_http.js');
+const basicHTTP = require(__dirname + '/../../app/js/lib/basic_http.js');
 
 var router = module.exports = exports = express.Router();
 

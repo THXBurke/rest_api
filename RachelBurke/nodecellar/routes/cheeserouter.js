@@ -2,7 +2,7 @@ const Router = require('express').Router;
 const Cheese = require(__dirname + '/../models/cheese_model.js');
 const bodyParser = require('body-parser').json();
 const errorHandler = require(__dirname + '/../error_handler.js');
-const jwtAuth = require(__dirname + '/../../../js/lib/jwtAuth.js');
+const jwtAuth = require(__dirname + '/../../app/js/lib/jwtAuth.js');
 var cheeseRouter = module.exports = Router();
 
 cheeseRouter.get('/cheese', jwtAuth, (req, res) => {
