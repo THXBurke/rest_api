@@ -33,7 +33,7 @@ pairingRouter.get('/pairing', (req, res) => {
         if (wineTotal.length < cheeseTotal.length) {
           res.status(200).json({ msg: 'nice pairing!' });
         } else {
-          Cheese.findByIdAndUpdate(tastyPairing._id, { $set: { tastyPairingFactor: 0 } },
+          Cheese.findByIdAndUpdate(tastyPairing._id, { $set: { tastyPairing } },
             (err, cheese) => {
               if (err) return errorHandler(err, res);
               console.log(cheese);

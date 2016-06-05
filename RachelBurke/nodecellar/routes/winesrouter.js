@@ -1,44 +1,38 @@
 const Router = require('express').Router;
 const Wine = require(__dirname + '/../models/wines_model');
 const bodyParser = require('body-parser').json();
-const errorhandler = require(__dirname + '/../error_handler');
+const errorHandler = require(__dirname + '/../error_handler');
+const jwtAuth = require(__dirname + '/../../../js/lib/jwtAuth.js');
 var winesRouter = module.exports = Router();
 
-winesRouter.post('/wine', bodyParser, (req, res) => {
-  var newWine = new Wine(req.body);
-  newWine.save((err, data) => {
-    if (err) return errorhandler(err, res);
 
-    res.status(200).json(data);
-  });
-});
-
-winesRouter.get('/wine', (req, res) => {
+winesRouter.get('/wine', jwtAuth, (req, res) => {
   Wine.find(null, (err, data) => {
     if (err) return errorhandler(err, res);
-
     res.status(200).json(data);
   });
 });
 
-winesRouter.put('/wine/:wine_id', (req, res) => {
-  Wine.findById(req.params.wine_id, (err, wine) => {
-    if (err) res.send(err);
-
-    wine.quantity = req.body.quantity;
-    wine.save((err) => {
-      if (err) return res.send(err);
-
-      res.json(wine);
-    });
+winesRouter.post('/wine', jwtAuth, bodyParser, (req, res) => {
+  var newWine = new Wine(req.body);
+  newWine.save((err, data) => {
+    if (err) errorHandler(err, res);
+    res.status(200).json(data);
   });
 });
 
+winesRouter.put('/wine/:id', jwtAuth, bodyParser, (req, res) => {
+  var wineData = req.body;
+  delete wineData._id;
+  Wine.update({ _id: req.params.id }, wineData, (err) => {
+    if (err) errorHandler(err, res);
+    res.status(200).json({ msg: 'Updated a wine entry with put' });
+  });
+});
 
-winesRouter.delete('/wine/:wine_id', (req, res) => {
-  Wine.findByIdAndRemove(req.params.wine_id, (err) => {
-    if (err) return res.send(err);
-
-    res.json({ message: 'Wine is all gone!' });
+winesRouter.delete('/wine/:id', jwtAuth, bodyParser, (req, res) => {
+  Wine.findOneAndRemove({ _id: req.params.id }, (err) => {
+    if (err) errorHandler(err, res);
+    res.status(200).json({ message: 'Drank the wine' });
   });
 });
