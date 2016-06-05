@@ -34,7 +34,7 @@ userSchema.methods.generateFindHash = function(cb) {
 userSchema.methods.generateToken = function(cb) {
   this.generateFindHash((err, hash) => {
     if (err) return cb(err);
-    cb(null, jwt.sign({ id: hash }, process.env.APP_SECRET));
+    cb(null, jwt.sign({ idd: hash }, process.env.APP_SECRET));
   });
 };
 

@@ -17,6 +17,17 @@ gulp.task('lintServer', () => {
   .pipe(eslint.format( { reporter: 'nyan' } ));
 });
 
+gulp.task('lint', () => {
+  return gulp.src(files)
+  .pipe(eslint({
+    envs: [
+      'mocha',
+      'es6'
+    ]
+  }))
+  .pipe(eslint.format());
+});
+
 gulp.task('lintClient', () => {
   return gulp.src(clientFiles)
   .pipe(eslint('./app/.eslintrc'))
