@@ -14,7 +14,7 @@ var testFiles = ['test/unit/wine_controllertest.js',
 gulp.task('lintServer', () => {
   return gulp.src(files)
   .pipe(eslint('./.eslintrc'))
-  .pipe(eslint.format( { reporter: 'nyan' } ));
+  .pipe(eslint.format());
 });
 
 gulp.task('lint', () => {

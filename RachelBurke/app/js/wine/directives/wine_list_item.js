@@ -10,7 +10,7 @@ module.exports = function(app) {
         wine: '='
       },
       link: function(scope, element, attrs, controller) {
-        scope.sell = controller.deleteWine;
+        scope.drink = controller.deleteWine;
       }
     };
   });

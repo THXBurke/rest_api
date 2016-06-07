@@ -7,11 +7,19 @@ const authRouter = require(__dirname + '/nodecellar/routes/authRouter.js');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, token');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  next();
+});
+
 app.use(bodyParser.json());
 app.use('/api', winesRouter);
 app.use('/api', cheeseRouter);
 app.use('/api', pairingRouter);
 app.use('/api', authRouter);
+
 
 module.exports = exports = {
   server: { close: function() {throw new Error('server not started');} },

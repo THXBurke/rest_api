@@ -31251,7 +31251,7 @@
 	        wine: '='
 	      },
 	      link: function(scope, element, attrs, controller) {
-	        scope.sell = controller.deleteWine;
+	        scope.drink = controller.deleteWine;
 	      }
 	    };
 	  });
@@ -34915,7 +34915,7 @@
 /* 33 */
 /***/ function(module, exports) {
 
-	module.exports = "<li>\n  <ng-transclude></ng-transclude>\n  {{wine.name}} from {{wine.year}} grown in {{wine.country}}\n  <button data-ng-if=\"!wine.editing\" data-ng-click=\"wine.editing = true\">Edit Wine</button>\n\n  <button data-ng-click=\"drink(wine)\">Drink some wine!</button>\n</li>\n";
+	module.exports = "<li>\n  <ng-transclude></ng-transclude>\n  {{wine.name}} from {{wine.year}} grown in {{wine.country}}\n  <button data-ng-if=\"wine.editing\" data-ng-click=\"wine.editing = false\">Cancel Edit</button>\n\n  <button data-ng-if=\"wine.editing\" data-ng-click=\"save(wine)\">Update some wine</button>\n</li>\n";
 
 /***/ }
 /******/ ]);

@@ -12,29 +12,25 @@
 
   <section data-ng-controller="WineController as winecontrol" data-ng-init="winecontrol.getAll()">
     <ul id="error1">
-      <li data-ng-repeat="error in winecontrol as winecontrol" data-ng-init="winecontrol.getAll()">"
         <li data-ng-repeat="error in winecontrol.errors">{{error.message}}<button
           data-ng-click="winecontrol.errors.splice(winecontrol.errors.indexOf(error), 1)">Done</button></li>
   <h2>What Wines are in the Cellar?</h2>
     <wine-form
-    data-button-text="inspect"
+    data-button-text="buy"
     data-change="create"
     data-wine="winecontrol.newWine">
     </wine-form>
 
     <ul id="winelist">
       <li data-ng-repeat="wine in winecontrol.wine">
-         {{name: 'Merlot',  year: '2016, country: "France"}}
         <button data-ng-if="!wine.editing" data-ng-click="wine.editing = true">Edit Wine</button>
 
-        <button data-ng-click="drink(wine)">Drink some wine!</button>
-        <wine-form
-        data-ng-if="wine.editing"
+        <button data-ng-if="!wine.editing" data-ng-click="drink(wine)">Drink some wine!</button>
+        <wine-list-item
         data-button-text="update"
         data-change="update"
         data-wine="wine">
-          <button data-ng-click="wine.editing = false">Cancel</button>
-        </wine-form>
+        </wine-list-item>
       </li>
     </ul>
   </section>
@@ -42,7 +38,7 @@
   <section data-ng-controller="CheeseController as cheesecontrol"
     <data-ng-init="cheesecontrol.getAll()">
     <ul id="error1">
-      <li data-ng-repeat="error in cheesecontrol as cheesecontrol" data-ng-init="cheesecontrol.getAll()">"
+      <li data-ng-repeat="error in errors as cheesecontrol" data-ng-init="cheesecontrol.getAll()">
         <li data-ng-repeat="error in cheesecontrol.errors">{{error.message}}<button
           data-ng-click="cheesecontrol.errors.splice(cheesecontrol.errors.indexOf(error), 1)">Done</button></li>
     </ul>

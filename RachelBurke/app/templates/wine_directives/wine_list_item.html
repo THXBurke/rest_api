@@ -1,7 +1,7 @@
 <li>
   <ng-transclude></ng-transclude>
   {{wine.name}} from {{wine.year}} grown in {{wine.country}}
-  <button data-ng-if="!wine.editing" data-ng-click="wine.editing = true">Edit Wine</button>
+  <button data-ng-if="wine.editing" data-ng-click="wine.editing = false">Cancel Edit</button>
 
-  <button data-ng-click="drink(wine)">Drink some wine!</button>
+  <button data-ng-if="wine.editing" data-ng-click="save(wine)">Update some wine</button>
 </li>
