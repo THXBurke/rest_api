@@ -36,15 +36,14 @@
   </section>
 
   <section data-ng-controller="CheeseController as cheesecontrol"
-    <data-ng-init="cheesecontrol.getAll()">
-    <ul id="error1">
-      <li data-ng-repeat="error in errors as cheesecontrol" data-ng-init="cheesecontrol.getAll()">
+    data-ng-init="cheesecontrol.getAll()">
+    <ul id="error2">
         <li data-ng-repeat="error in cheesecontrol.errors">{{error.message}}<button
           data-ng-click="cheesecontrol.errors.splice(cheesecontrol.errors.indexOf(error), 1)">Done</button></li>
     </ul>
 
   </br>
-    <h2>How to choose a good cheese</h2>
+    <h2>What Cheese is in the Cellar?</h2>
     <cheese-form
     data-button-text="Choose Cheese"
     data-change="create"
@@ -52,21 +51,8 @@
   </cheese-form>
 
   <ul id="cheeselist">
-    <li data-ng-repeat="cheese in cheesecontrol.cheeses">
-      {{cheese.name}} produced in {{cheese.country}} made from {{cheese.origin}}
-      <button data-ng-if="!cheese.editing" data-ng-click="cheese.editing = true">More Cheese</button>
-
-      <button data-ng-click="eat(cheese)">Enjoy some Cheese</button>
-      <cheese-form
-      data-ng-if="cheese.editing"
-      data-button-text="Enjoy the Cheese"
-      data-change="update"
-      data-cheese="cheese">
-        <button data-ng-click="cheese.editing = false">Devour</button>
-      </cheese-form>
-    </li>
-
-    <cheese-list-item data-ng-repeat="cheese in cheesecontrol.cheeses" data-cheese="cheese">
+  <li data-ng-repeat="cheese in cheesecontrol.cheeses">
+    <cheese-list-item data-cheese="cheese">
       <cheese-form
       data-ng-if="cheese.editing"
       data-button-text="Enjoy the Cheese"
@@ -75,6 +61,7 @@
         <button data-ng-click="cheese.editing = false">Devour</button>
       </cheese-form>
     </cheese-list-item>
+  </li>
   </ul>
 
   <article>
